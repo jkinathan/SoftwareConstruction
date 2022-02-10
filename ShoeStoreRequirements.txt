@@ -1,0 +1,41 @@
+Requirements
+
+Functional Requirements
+
+Customer/User
+1.	The system should enable a registered customer browse and search through the different categories of shoes available.
+2.	The system should be able to show a details page for every shoe product available.
+3.	The customer should be able to view the products they have added into their shopping cart.
+4.	The system should enable a new customer to register and provide their details on registration such as username, email, phone contact, delivery address. 
+5.	The system should enable a logged in user proceed to the checkout payment to process their order. 
+6.	The system should also enable the customer to update their details in case of any change especially the delivery address.
+7.	The system should enable a logged in customer to view the status of their order.
+8.	The system should enable to send a reset link to users/customers who have forgotten their passwords when they click on the forgot password link after providing their emails to the system. 
+9.	The system should provide a variety of payment options from which customers can choose from.
+10.	If the transaction is successful, the system should generate a receipt for the customer that their order has been confirmed and also estimate the number of days for the delivery. 
+
+Admin
+1.	The system should enable the admin to log in and view a dashboard of all shoe products available along with current orders.
+2.	The admin should be able to easily add, update and delete products in the system.
+3.	The admin should be able to generate reports on the shoe sales made by the system.
+4.	Admin should be able to view all customers and their details from the system.
+
+
+Non-functional Requirements 
+1.	The system, should have eased accessibility of information, high-level user interface guidelines, and support for various levels of user expertise for each and every one.
+2.	The system should be safe and secure to use for all the users. 
+3.	The system should be available at least 24 hours for customers to make their orders and get confirmations at any time. Down times should also be announced in advance for the users to be ready for them.
+4.	The system should be more reliable as compared to the current manual system. Downtimes in the system should therefore be as minimum as possible. 
+5.	In case of any disaster the data should not be lost and the system should be able to easily and quickly restore the data and ensure business continuity.
+6.	The system should not be used to leak any privacy information about the customer’s data, requests and confirmations.
+7.	Data should be store in a central database. Customer’s records should be encrypted and user access control should be implemented. Auto routine back up of data should also be done by the system. 
+8.	The system should be able to support about 500 simultaneous users.
+9.	The system shoudl be able to accomodate new products and product lines without major engineering
+
+Operational Requirements Software Requirements 
+•	Client Operating Systems both for Desktop computers and other mobile devices; 
+•	UNIX 
+•	MAC
+•	Windows Client Application
+•	Any Java Script compatible browser for example; Google Chrome, Mozilla Firefox, Netscape, Edge, Opera, Brave
+
