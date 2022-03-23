@@ -17,9 +17,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.smartsneaker.config.security.CurrentUser;
+import com.example.smartsneaker.config.security.UserPrincipal;
 import com.example.smartsneaker.exception.ResourceNotFoundException;
 import com.example.smartsneaker.model.Product;
+import com.example.smartsneaker.payload.ProductRequest;
+import com.example.smartsneaker.payload.ProductResponse;
 import com.example.smartsneaker.repository.ProductRepository;
+import com.example.smartsneaker.service.ProductService;
 
 
 @RestController
@@ -29,15 +34,38 @@ public class ProductController {
 	@Autowired
     private ProductRepository productRepository;
 	
-	@GetMapping("/products")
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+//	@GetMapping("/products")
+//    public List<Product> getAllProducts() {
+//        return productRepository.findAll();
+//    }
+	
+//	Another method to get all products using payload
+	@GetMapping("/products2")
+	public List<ProductResponse> getAllProducts() {
+        return ProductService.getAllProducts();
     }
 
-    @PostMapping("/products")
-    public Product createProduct(@Valid @RequestBody Product product) {
-        return productRepository.save(product);
+	
+//	Another method to create a product
+	@PostMapping("/createproduct")
+    public Product createProduct(@Valid @RequestBody ProductRequest request) {
+        return ProductService.createProduct(request);
     }
+	
+		
+//	Method 2 to create product by passing whole product object
+//    @PostMapping("/products")
+//    public Product createProduct(@Valid @RequestBody Product product) {
+//        return productRepository.save(product);
+//    }
+    
+//    Getting specific product by id
+    @GetMapping("/{productId}")
+    public ProductResponse getProductById(@CurrentUser UserPrincipal currentUser,
+                                    @PathVariable Long productId) {
+        return productService.getProductById(productId, currentUser);
+    }
+    
     
     @PutMapping("/products/{productId}")
     public Product updateProduct(@PathVariable Long productId, @Valid @RequestBody Product productRequest) {
