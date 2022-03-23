@@ -58,7 +58,7 @@ public class ProductService {
 	public ProductResponse getProductById(Long productId) {
 		
         Product product = productRepository.findById(productId).orElseThrow(
-                () -> new ResourceNotFoundException("Product", "id", productId));
+                () -> new ResourceNotFoundException("productId " + productId + " not found", null, productId));
         
         ProductResponse response = new ProductResponse();
         
@@ -70,4 +70,6 @@ public class ProductService {
 
         return response;
     }
+
+
 }

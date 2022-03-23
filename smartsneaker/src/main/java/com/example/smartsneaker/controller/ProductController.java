@@ -34,6 +34,9 @@ public class ProductController {
 	@Autowired
     private ProductRepository productRepository;
 	
+	@Autowired
+	private ProductService productService;
+	
 //	@GetMapping("/products")
 //    public List<Product> getAllProducts() {
 //        return productRepository.findAll();
@@ -42,14 +45,14 @@ public class ProductController {
 //	Another method to get all products using payload
 	@GetMapping("/products2")
 	public List<ProductResponse> getAllProducts() {
-        return ProductService.getAllProducts();
+        return productService.getAllProducts();
     }
 
 	
 //	Another method to create a product
 	@PostMapping("/createproduct")
     public Product createProduct(@Valid @RequestBody ProductRequest request) {
-        return ProductService.createProduct(request);
+        return productService.createProduct(request);
     }
 	
 		
@@ -61,11 +64,12 @@ public class ProductController {
     
 //    Getting specific product by id
     @GetMapping("/{productId}")
-    public ProductResponse getProductById(@CurrentUser UserPrincipal currentUser,
-                                    @PathVariable Long productId) {
-        return productService.getProductById(productId, currentUser);
+    public ProductResponse getProductById(@PathVariable Long productId) {
+        return productService.getProductById(productId);
     }
     
+    
+// 	Updating products
     
     @PutMapping("/products/{productId}")
     public Product updateProduct(@PathVariable Long productId, @Valid @RequestBody Product productRequest) {
