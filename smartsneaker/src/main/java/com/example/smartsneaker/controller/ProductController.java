@@ -51,8 +51,8 @@ public class ProductController {
 	
 //	Another method to create a product
 	@PostMapping("/createproduct")
-    public Product createProduct(@Valid @RequestBody ProductRequest request) {
-        return productService.createProduct(request);
+    public ProductRequest createProduct(@Valid @RequestBody ProductRequest request) {
+        return productService.createEditProduct(request);
     }
 	
 		
@@ -71,27 +71,27 @@ public class ProductController {
     
 // 	Updating products
     
-    @PutMapping("/products/{productId}")
-    public Product updateProduct(@PathVariable Long productId, @Valid @RequestBody Product productRequest) {
+    @PutMapping("/products/")
+    public ProductRequest updateProduct(@Valid @RequestBody ProductRequest productRequest) {
     	
-    	return productRepository.findById(productId).map(prod -> {
-            prod.setname(prod.getname());
-            prod.setprice(prod.getprice());
-            prod.setcolor(prod.getcolor());
-            prod.setquantity(prod.getquantity());
-            prod.setsize(prod.getsize());
-            
-            return productRepository.save(prod);
-            
-        }).orElseThrow(() -> new ResourceNotFoundException("productId " + productId + " not found", null, productRequest));
+    	return productService.createEditProduct(productRequest);
     }
 
-
+//    Deleting using Service and payloads 
     @DeleteMapping("/products/{productId}")
-    public ResponseEntity<?> deleteProduct(@PathVariable Long productId) {
-        return productRepository.findById(productId).map(prod -> {
-            productRepository.delete(prod);
-            return ResponseEntity.ok().build();
-        }).orElseThrow(() -> new ResourceNotFoundException("ProductId " + productId + " not found", null, productId));
+    public String deleteProduct(@PathVariable Long productId) {
+    	return productService.deleteProduct(productId);
     }
+
+//    @DeleteMapping("/products/{productId}")
+//    public ResponseEntity<?> deleteProduct(@PathVariable Long productId) {
+//    	
+//        return productRepository.findById(productId).map(prod -> {
+//        	
+//            productRepository.delete(prod);
+//            
+//            return ResponseEntity.ok().build();
+//            
+//        }).orElseThrow(() -> new ResourceNotFoundException("ProductId " + productId + " not found", null, productId));
+//    }
 }

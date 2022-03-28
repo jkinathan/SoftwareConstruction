@@ -2,6 +2,7 @@ package com.example.smartsneaker.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,17 +20,22 @@ public class ProductService {
 	@Autowired
 	private ProductRepository productRepository;
 	
-//	Creating a product
-	public Product createProduct(ProductRequest productRequest) {
+//	Creating or Editing a product
+	public ProductRequest createEditProduct(ProductRequest productRequest) {
+		
+		Optional<Product> existingProduct  = productRequest.getId() != null ? productRepository.findById(productRequest.getId()) :
+			Optional.empty();
+		
+		
         
-		Product product = new Product();
+		Product product = existingProduct.isPresent() ? existingProduct.get() :  new Product();
         product.setname(productRequest.getName());
         product.setprice(productRequest.getPrice());
         product.setquantity(productRequest.getQuantity());
         product.setsize(productRequest.getSize());
         product.setcolor(productRequest.getColor());
         
-        return productRepository.save(product);
+        return productRepository.save(product) != null ? productRequest : null;
     }
 	
 //	Listing all products
@@ -44,6 +50,7 @@ public class ProductService {
 			response.setName(product.getname());
 			response.setPrice(product.getprice());
 			response.setQuantity(product.getquantity());
+			response.setColor(product.getcolor());
 			response.setSize(product.getsize());
 			
 			products.add(response);
@@ -70,6 +77,27 @@ public class ProductService {
 
         return response;
     }
+	
+	
+//	Deleting product
+	public String deleteProduct(Long productId) {
+		
+		Optional<Product> del = productId != null ? productRepository.findById(productId) : Optional.empty();
+		if(del.isPresent()) {
+			
+			try {
+				
+				productRepository.delete(del.get());
+				return "Deleted successfully";
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+				return "Not Deleted";
+			}
+			
+		}
+		return "Not Deleted";
+	}
 
 
 }

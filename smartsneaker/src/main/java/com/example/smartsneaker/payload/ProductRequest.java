@@ -7,6 +7,9 @@ import javax.validation.constraints.Size;
 // import java.util.List;
 
 public class ProductRequest {
+	
+	private Long id;
+	
     @NotBlank
     @Size(max = 140)
     private String name;
@@ -65,6 +68,14 @@ public class ProductRequest {
 
 	public void setQuantity(String quantity) {
 		this.quantity = quantity;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
     
