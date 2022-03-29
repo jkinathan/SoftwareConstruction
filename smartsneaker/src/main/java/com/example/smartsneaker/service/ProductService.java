@@ -29,12 +29,12 @@ public class ProductService {
 		
         
 		Product product = existingProduct.isPresent() ? existingProduct.get() :  new Product();
-        product.setname(productRequest.getName());
-        product.setprice(productRequest.getPrice());
-        product.setquantity(productRequest.getQuantity());
-        product.setsize(productRequest.getSize());
-        product.setcolor(productRequest.getColor());
-        
+        product.setName(productRequest.getName());
+        product.setPrice(productRequest.getPrice());
+        product.setQuantity(productRequest.getQuantity());
+        product.setSize(productRequest.getSize());
+        product.setColor(productRequest.getColor());
+        product.setCategory(productRequest.getCategory());        
         return productRepository.save(product) != null ? productRequest : null;
     }
 	
@@ -47,11 +47,11 @@ public class ProductService {
 			ProductResponse response = new ProductResponse();
 			
 			response.setId(product.getId());
-			response.setName(product.getname());
-			response.setPrice(product.getprice());
-			response.setQuantity(product.getquantity());
-			response.setColor(product.getcolor());
-			response.setSize(product.getsize());
+			response.setName(product.getName());
+			response.setPrice(product.getPrice());
+			response.setQuantity(product.getQuantity());
+			response.setColor(product.getColor());
+			response.setSize(product.getSize());
 			
 			products.add(response);
 			
@@ -70,10 +70,10 @@ public class ProductService {
         ProductResponse response = new ProductResponse();
         
         response.setId(product.getId());
-		response.setName(product.getname());
-		response.setPrice(product.getprice());
-		response.setQuantity(product.getquantity());
-		response.setSize(product.getsize());
+		response.setName(product.getName());
+		response.setPrice(product.getPrice());
+		response.setQuantity(product.getQuantity());
+		response.setSize(product.getSize());
 
         return response;
     }

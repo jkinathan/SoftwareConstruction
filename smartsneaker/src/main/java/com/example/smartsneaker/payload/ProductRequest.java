@@ -4,6 +4,8 @@ package com.example.smartsneaker.payload;
 import javax.validation.constraints.NotBlank;
 // import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.example.smartsneaker.model.Category;
 // import java.util.List;
 
 public class ProductRequest {
@@ -29,6 +31,10 @@ public class ProductRequest {
     @NotBlank
     @Size(max = 140)
     private String quantity;
+    
+    @NotBlank
+    @Size(max = 140)
+    private Category category;
 
 	public String getName() {
 		return name;
@@ -78,6 +84,19 @@ public class ProductRequest {
 		this.id = id;
 	}
 
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	
+	
+	
+
+	
     
 
 }

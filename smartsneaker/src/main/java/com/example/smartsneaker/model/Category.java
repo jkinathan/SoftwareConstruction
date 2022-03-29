@@ -28,17 +28,18 @@ public class Category {
     @Size(max = 60)
     private String name;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                CascadeType.PERSIST,
-                CascadeType.MERGE
-            },
-            mappedBy = "categories")
-    private Set<Product> products = new HashSet<>();
-
+    
 	public Category() {
 		
 	}
+	
+
+	public Category(Long id, @NotBlank @Size(max = 60) String name) {
+	super();
+	this.id = id;
+	this.name = name;
+}
+
 
 	public Long getId() {
 		return id;
@@ -56,13 +57,7 @@ public class Category {
 		this.name = name;
 	}
 
-	public Set<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(Set<Product> products) {
-		this.products = products;
-	}
+	
 
 	
     
