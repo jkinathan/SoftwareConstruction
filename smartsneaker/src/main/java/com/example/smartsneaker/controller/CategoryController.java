@@ -17,9 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.smartsneaker.exception.ResourceNotFoundException;
 import com.example.smartsneaker.model.Category;
-import com.example.smartsneaker.model.Product;
 import com.example.smartsneaker.payload.CategoryRequest;
-import com.example.smartsneaker.payload.ProductRequest;
+import com.example.smartsneaker.payload.CategoryResponse;
 import com.example.smartsneaker.repository.CategoryRepository;
 import com.example.smartsneaker.service.CategoryService;
 import com.example.smartsneaker.service.ProductService;
@@ -36,10 +35,9 @@ public class CategoryController {
 	private CategoryService categoryService;
 	
 	@GetMapping("/categories")
-    public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
+   	public List<CategoryResponse> getAllProducts() {
+        return categoryService.getAllCategories();
     }
-
 
 	@PostMapping("/category")
 	public CategoryRequest createCategory(@Valid @RequestBody CategoryRequest request) {
