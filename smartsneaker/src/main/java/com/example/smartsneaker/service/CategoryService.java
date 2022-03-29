@@ -16,7 +16,7 @@ public class CategoryService {
 	private CategoryRepository categoryRepository;
 	
 //	Creating or Editing a category
-	public CategoryRequest createEditProduct(CategoryRequest categoryRequest) {
+	public CategoryRequest createEditCategory(CategoryRequest categoryRequest) {
 		
 		Optional<Category> existingProduct  = categoryRequest.getId() != null ? categoryRepository.findById(categoryRequest.getId()) :
 			Optional.empty();
