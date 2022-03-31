@@ -20,4 +20,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     List<Category> findByIdIn(List<Long> categoryIds);
 
     Boolean existsByName(String name);
+
+	Category save(Category category);
 }

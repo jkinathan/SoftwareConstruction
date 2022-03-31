@@ -11,6 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
@@ -36,7 +37,6 @@ public class Product extends DateAudit {
     @NotBlank
     @Size(max = 15)
     private String price;
-
     
     @NotBlank
     @Size(max = 15)
@@ -50,11 +50,14 @@ public class Product extends DateAudit {
     @Size(max = 100)
     private String color;
 
-    
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
     
+	@ManyToOne(fetch = FetchType.LAZY)
+  	@JoinColumn (name="cartproduct_id",referencedColumnName="id",nullable=true,unique=true)
+  	private CartProduct cartprod;
+
     public Product() {
 
     }

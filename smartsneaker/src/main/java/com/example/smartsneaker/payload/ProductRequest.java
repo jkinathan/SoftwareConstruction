@@ -32,8 +32,6 @@ public class ProductRequest {
     @Size(max = 140)
     private String quantity;
     
-    @NotBlank
-    @Size(max = 140)
     private Category category;
 
 	public String getName() {

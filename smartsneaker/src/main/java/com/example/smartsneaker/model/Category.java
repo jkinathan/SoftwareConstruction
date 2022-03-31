@@ -1,16 +1,8 @@
 package com.example.smartsneaker.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.smartsneaker.model.audit.DateAudit;
 
 @Entity
 @Table(name = "categories", uniqueConstraints = {
@@ -19,26 +11,26 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
         })
 })
 
-public class Category {
+public class Category extends DateAudit{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
-    @Size(max = 60)
+    
     private String name;
 
     
+
 	public Category() {
 		
 	}
-	
 
-	public Category(Long id, @NotBlank @Size(max = 60) String name) {
-	super();
-	this.id = id;
-	this.name = name;
-}
+
+	public Category(Long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
 
 	public Long getId() {

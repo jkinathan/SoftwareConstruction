@@ -2,6 +2,8 @@ package com.example.smartsneaker.payload;
 
 import java.util.List;
 
+import com.example.smartsneaker.model.Category;
+
 public class ProductResponse {
 
 	private Long id;
@@ -10,6 +12,7 @@ public class ProductResponse {
     private String size;
     private String color;
     private String quantity;
+    private Category category;
     
     
 	public Long getId() {
@@ -47,6 +50,12 @@ public class ProductResponse {
 	}
 	public void setQuantity(String quantity) {
 		this.quantity = quantity;
+	}
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
 	}
     
     

@@ -1,10 +1,16 @@
 package com.example.smartsneaker.service;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.Column;
+
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.stereotype.Service;
 
 import com.example.smartsneaker.config.security.UserPrincipal;
@@ -20,6 +26,7 @@ public class ProductService {
 	@Autowired
 	private ProductRepository productRepository;
 	
+		
 //	Creating or Editing a product
 	public ProductRequest createEditProduct(ProductRequest productRequest) {
 		
@@ -34,7 +41,14 @@ public class ProductService {
         product.setQuantity(productRequest.getQuantity());
         product.setSize(productRequest.getSize());
         product.setColor(productRequest.getColor());
-        product.setCategory(productRequest.getCategory());        
+        try {
+        	product.setCategory(productRequest.getCategory());
+		} catch (Exception e) {
+			System.out.println(e.getMessage().toString());
+		}
+        
+        
+        
         return productRepository.save(product) != null ? productRequest : null;
     }
 	
@@ -52,6 +66,7 @@ public class ProductService {
 			response.setQuantity(product.getQuantity());
 			response.setColor(product.getColor());
 			response.setSize(product.getSize());
+			response.setCategory(product.getCategory());
 			
 			products.add(response);
 			
@@ -72,8 +87,10 @@ public class ProductService {
         response.setId(product.getId());
 		response.setName(product.getName());
 		response.setPrice(product.getPrice());
+		response.setColor(product.getColor());
 		response.setQuantity(product.getQuantity());
 		response.setSize(product.getSize());
+		response.setCategory(product.getCategory());
 
         return response;
     }

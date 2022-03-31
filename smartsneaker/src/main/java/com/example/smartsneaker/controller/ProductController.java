@@ -1,6 +1,5 @@
 package com.example.smartsneaker.controller;
 
-// import java.awt.print.Pageable;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -37,13 +36,9 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-//	@GetMapping("/products")
-//    public List<Product> getAllProducts() {
-//        return productRepository.findAll();
-//    }
 	
 //	Another method to get all products using payload
-	@GetMapping("/products2")
+	@GetMapping("/products")
 	public List<ProductResponse> getAllProducts() {
         return productService.getAllProducts();
     }
@@ -55,15 +50,9 @@ public class ProductController {
         return productService.createEditProduct(request);
     }
 	
-		
-//	Method 2 to create product by passing whole product object
-//    @PostMapping("/products")
-//    public Product createProduct(@Valid @RequestBody Product product) {
-//        return productRepository.save(product);
-//    }
     
 //    Getting specific product by id
-    @GetMapping("/{productId}")
+    @GetMapping("/product/{productId}")
     public ProductResponse getProductById(@PathVariable Long productId) {
         return productService.getProductById(productId);
     }

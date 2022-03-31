@@ -5,12 +5,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
 import com.example.smartsneaker.model.Category;
 import com.example.smartsneaker.payload.CategoryRequest;
 import com.example.smartsneaker.payload.CategoryResponse;
 import com.example.smartsneaker.repository.CategoryRepository;
 
+@Service
 public class CategoryService {
 	@Autowired
 	private CategoryRepository categoryRepository;
@@ -24,6 +25,7 @@ public class CategoryService {
 		
         
 		Category cat = existingProduct.isPresent() ? existingProduct.get() :  new Category();
+		
         cat.setName(categoryRequest.getName());
                 
         return categoryRepository.save(cat) != null ? categoryRequest : null;
