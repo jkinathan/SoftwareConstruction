@@ -16,15 +16,10 @@ public class CartRequest {
     @Size(max = 140)
     private String name;
     
-    @NotBlank
-    @Size(max = 15)
     private double quantity;
 	
-	@NotBlank
-	@Size(max = 15)
     private double total;
 	
-	@NotBlank
     private User user;
 	
 	private Set<Product> products;

@@ -33,6 +33,7 @@ public class ProductRequest {
     private String quantity;
     
     private Category category;
+    
 
 	public String getName() {
 		return name;

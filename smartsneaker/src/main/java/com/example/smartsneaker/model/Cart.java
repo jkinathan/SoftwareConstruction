@@ -20,12 +20,12 @@ import javax.validation.constraints.Size;
 import com.example.smartsneaker.model.audit.DateAudit;
 
 @Entity
-@Table(name = "cartProduct", uniqueConstraints = {
+@Table(name = "carts", uniqueConstraints = {
         @UniqueConstraint(columnNames = {
             "name"
         })
 })
-public class CartProduct extends DateAudit{
+public class Cart extends DateAudit{
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,17 +35,10 @@ public class CartProduct extends DateAudit{
     @Size(max = 40)
     private String name;
 	
-	@NotBlank
-    @Size(max = 15)
     private double quantity;
 	
-	@NotBlank
-	@Size(max = 15)
     private double total;
 	
-	// @OneToMany(mappedBy="cartProduct")
-    
-
 	@OneToMany(mappedBy = "cartprod", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Product> products;
 
@@ -55,12 +48,12 @@ public class CartProduct extends DateAudit{
     private User user;
 
     
-	public CartProduct() {
+	public Cart() {
 		
 	}
 
 
-	public CartProduct(Long id, @NotBlank @Size(max = 40) String name, @NotBlank @Size(max = 15) double quantity,
+	public Cart(Long id, @NotBlank @Size(max = 40) String name, @NotBlank @Size(max = 15) double quantity,
 			@NotBlank @Size(max = 15) double total, Set<Product> products, @NotNull User user) {
 		super();
 		this.id = id;

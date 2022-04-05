@@ -55,8 +55,8 @@ public class Product extends DateAudit {
     private Category category;
     
 	@ManyToOne(fetch = FetchType.LAZY)
-  	@JoinColumn (name="cartproduct_id",referencedColumnName="id",nullable=true,unique=true)
-  	private CartProduct cartprod;
+  	@JoinColumn (name="cart_id",referencedColumnName="id",nullable=true,unique=true)
+  	private Cart cartprod;
 
     public Product() {
 

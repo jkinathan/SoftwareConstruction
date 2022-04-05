@@ -6,12 +6,14 @@ import com.example.smartsneaker.model.Product;
 import com.example.smartsneaker.model.User;
 
 public class CartResponse {
+	
 	private Long id;
     private String name;
-    private String quantity;
+    private double quantity;
     private double total;
-    private User user;
+    private UserSummary user;
     private Set<Product> products;
+    
 	public Long getId() {
 		return id;
 	}
@@ -24,11 +26,11 @@ public class CartResponse {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getQuantity() {
+	public double getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(String quantity) {
-		this.quantity = quantity;
+	public void setQuantity(double d) {
+		this.quantity = d;
 	}
 	public double getTotal() {
 		return total;
@@ -36,12 +38,14 @@ public class CartResponse {
 	public void setTotal(double total) {
 		this.total = total;
 	}
-	public User getUser() {
+	
+	public UserSummary getUser() {
 		return user;
 	}
-	public void setUser(User user) {
+	public void setUser(UserSummary user) {
 		this.user = user;
 	}
+	
 	public Set<Product> getProducts() {
 		return products;
 	}

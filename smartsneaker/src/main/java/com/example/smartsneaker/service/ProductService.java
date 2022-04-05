@@ -33,8 +33,6 @@ public class ProductService {
 		Optional<Product> existingProduct  = productRequest.getId() != null ? productRepository.findById(productRequest.getId()) :
 			Optional.empty();
 		
-		
-        
 		Product product = existingProduct.isPresent() ? existingProduct.get() :  new Product();
         product.setName(productRequest.getName());
         product.setPrice(productRequest.getPrice());
