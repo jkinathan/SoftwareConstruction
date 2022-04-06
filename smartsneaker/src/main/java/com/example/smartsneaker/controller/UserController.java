@@ -1,15 +1,8 @@
 package com.example.smartsneaker.controller;
-
-import com.example.smartsneaker.exception.ResourceNotFoundException;
-import com.example.smartsneaker.model.User;
 import com.example.smartsneaker.payload.*;
-// import com.example.smartsneaker.repository.PollRepository;
 import com.example.smartsneaker.repository.UserRepository;
-// import com.example.smartsneaker.repository.VoteRepository;
 import com.example.smartsneaker.config.security.UserPrincipal;
-// import com.example.smartsneaker.service.PollService;
 import com.example.smartsneaker.config.security.CurrentUser;
-import com.example.smartsneaker.util.AppConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +15,6 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
-
-    // @Autowired
-    // private PollRepository pollRepository;
-
-    // @Autowired
-    // private VoteRepository voteRepository;
-
-    // @Autowired
-    // private PollService pollService;
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -53,34 +37,5 @@ public class UserController {
         return new UserIdentityAvailability(isAvailable);
     }
 
-    // @GetMapping("/users/{username}")
-    // public UserProfile getUserProfile(@PathVariable(value = "username") String username) {
-    //     User user = userRepository.findByUsername(username)
-    //             .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
-
-    //     long pollCount = pollRepository.countByCreatedBy(user.getId());
-    //     long voteCount = voteRepository.countByUserId(user.getId());
-
-    //     UserProfile userProfile = new UserProfile(user.getId(), user.getUsername(), user.getName(), user.getCreatedAt(), pollCount, voteCount);
-
-    //     return userProfile;
-    // }
-
-    // @GetMapping("/users/{username}/polls")
-    // public PagedResponse<PollResponse> getPollsCreatedBy(@PathVariable(value = "username") String username,
-    //                                                      @CurrentUser UserPrincipal currentUser,
-    //                                                      @RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
-    //                                                      @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
-    //     return pollService.getPollsCreatedBy(username, currentUser, page, size);
-    // }
-
-
-    // @GetMapping("/users/{username}/votes")
-    // public PagedResponse<PollResponse> getPollsVotedBy(@PathVariable(value = "username") String username,
-    //                                                    @CurrentUser UserPrincipal currentUser,
-    //                                                    @RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
-    //                                                    @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
-    //     return pollService.getPollsVotedBy(username, currentUser, page, size);
-    // }
 
 }

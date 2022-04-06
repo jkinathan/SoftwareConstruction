@@ -1,7 +1,7 @@
 package com.example.smartsneaker.model;
 
-import java.util.Set;
-
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,6 +16,8 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.example.smartsneaker.model.audit.DateAudit;
 
@@ -38,9 +40,16 @@ public class Cart extends DateAudit{
     private double quantity;
 	
     private double total;
+    
+    @OneToMany(
+            mappedBy = "cart",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    
+    @Fetch(FetchMode.SELECT)
+    private List<Product> products = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "cartprod", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<Product> products;
 
     @NotNull
 	@OneToOne(cascade = CascadeType.ALL,fetch=FetchType.LAZY)
@@ -54,7 +63,7 @@ public class Cart extends DateAudit{
 
 
 	public Cart(Long id, @NotBlank @Size(max = 40) String name, @NotBlank @Size(max = 15) double quantity,
-			@NotBlank @Size(max = 15) double total, Set<Product> products, @NotNull User user) {
+			@NotBlank @Size(max = 15) double total, List<Product> products, @NotNull User user) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -105,12 +114,12 @@ public class Cart extends DateAudit{
 	}
 
 
-	public Set<Product> getProducts() {
+	public List<Product> getProducts() {
 		return products;
 	}
 
 
-	public void setProducts(Set<Product> products) {
+	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
 

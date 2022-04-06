@@ -1,7 +1,6 @@
 package com.example.smartsneaker.payload;
 
-import java.util.Set;
-
+import java.util.List;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -22,7 +21,7 @@ public class CartRequest {
 	
     private User user;
 	
-	private Set<Product> products;
+    private List<Product> products;
 
 	public Long getId() {
 		return id;
@@ -64,11 +63,11 @@ public class CartRequest {
 		this.user = user;
 	}
 
-	public Set<Product> getProducts() {
+	public List<Product> getProducts() {
 		return products;
 	}
 
-	public void setProducts(Set<Product> products) {
+	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
 	

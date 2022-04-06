@@ -1,7 +1,5 @@
 package com.example.smartsneaker.payload;
 
-import java.util.List;
-
 import com.example.smartsneaker.model.Category;
 
 public class ProductResponse {

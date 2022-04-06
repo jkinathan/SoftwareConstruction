@@ -1,9 +1,7 @@
 package com.example.smartsneaker.payload;
 
-import java.util.Set;
-
+import java.util.List;
 import com.example.smartsneaker.model.Product;
-import com.example.smartsneaker.model.User;
 
 public class CartResponse {
 	
@@ -12,7 +10,7 @@ public class CartResponse {
     private double quantity;
     private double total;
     private UserSummary user;
-    private Set<Product> products;
+    private List<Product> products;
     
 	public Long getId() {
 		return id;
@@ -46,10 +44,10 @@ public class CartResponse {
 		this.user = user;
 	}
 	
-	public Set<Product> getProducts() {
+	public List<Product> getProducts() {
 		return products;
 	}
-	public void setProducts(Set<Product> products) {
+	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
     
